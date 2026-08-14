@@ -1,0 +1,4 @@
+app/.venv/
+lib-rust/target/
+__pycache__/
+*.pyc

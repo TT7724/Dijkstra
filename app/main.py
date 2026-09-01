@@ -1,4 +1,5 @@
 import pygame
+from pygame.constants import MOUSEBUTTONDOWN
 
 
 class djikstra:
@@ -69,15 +70,18 @@ def dessin_grille(screen,screen_size, size: [int, int], start: [int, int], end: 
 
 
 
-def obtention_coo(prompt: str) -> list[int]:
-    """Demande une coordonnée valide (format: 'col row') et la retourne sous forme [row, col]."""
+def obtention_coo(question: str) -> list[int]:
+    #Demande une coordonnée valide (format: 'col row') et la retourne sous forme [row, col]
+
     while True:
-        answer = input(prompt)
+        answer = input(question)
         parts = answer.split()
+
         if len(parts) == 2 and all(p.isdigit() for p in parts):
             col, row = map(int, parts)
             return [row, col]
-        print("Entrée invalide. Format attendu : 'col row' (ex: '2 3'). Réessayez.")
+
+        print("Entrée invalide, format attendu : 'col row' (ex: '2 3'). Réessayez")
 
 
 
@@ -131,12 +135,31 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((screen_size, screen_size+100))
     clock = pygame.time.Clock()
 
+    pygame.draw.rect(screen, (255, 0, 255), pygame.Rect(0, 700, 100, 100))
+
     running = True
     while running:
         #controle de la fermeture
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+            #Si un clique est repéré
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                coo_click_x, coo_click_y = event.pos
+                print(coo_click_x, coo_click_y)
+
+                #Si on clique sur des bouton
+                if coo_click_y > screen_size:
+                    pygame.draw.rect(screen, (255, 0, 0), rect)
+                #Sinon c'est dans le tableau
+                else:
+                    coo_click_y = int(coo_click_y // (screen_size / size[0] ))
+                    coo_click_x = int(coo_click_x // (screen_size / size[1]))
+
+                    print(coo_click_x, coo_click_y)
+
+
 
         dessin_grille(screen,screen_size , size=size, start=start, end=end, list_wall=l_wall, list_restriction=l_resr)
 

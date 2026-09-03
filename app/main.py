@@ -151,7 +151,8 @@ if __name__ == '__main__':
 
                 #Si on clique sur des bouton
                 if coo_click_y > screen_size:
-                    pygame.draw.rect(screen, (255, 0, 0), rect)
+                    print(coo_click_x, coo_click_y)
+                    pygame.draw.rect(screen, (255, 125, 255), pygame.Rect(0, 700, 100, 100))
                 #Sinon c'est dans le tableau
                 else:
                     coo_click_y = int(coo_click_y // (screen_size / size[0] ))

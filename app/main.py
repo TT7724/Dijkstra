@@ -1,6 +1,8 @@
 from asyncio.windows_events import NULL
 from enum import Enum, auto
 import pygame
+import random
+import math
 
 class Mode(Enum):
     START = auto()
@@ -55,6 +57,7 @@ class djikstra:
 
                 elif (row, col) in self.list_wall:
                     pygame.draw.rect(self.screen, (255, 0, 0), rect)
+                    self.dessine_points(screen, [row * x,col * y], self.list_wall[(row, col)], [x, y])
 
                 else:
                     pygame.draw.rect(self.screen, (255, 255, 255), rect)
@@ -106,7 +109,7 @@ class djikstra:
                     elif [coo_click_x, coo_click_y] == self.end:
                         self.end.clear()
 
-                    self.list_wall[(coo_click_x, coo_click_y)] = 1
+                    self.list_wall[(coo_click_x, coo_click_y)] = 0
 
 
             case Mode.REFRESH:
@@ -153,6 +156,17 @@ class djikstra:
     - Liste mur : {dij.get_list_wall()}
                             """)
             return Mode.TRAITEMENT
+
+
+    def dessine_points(self, screen, limite_rect: tuple[int, int], nombre_points: int, taille_xy: tuple[int, int]) -> None:
+        lim_x, lim_y = limite_rect
+        taille_x, taille_y = taille_xy
+        rayon_cercle = math.sqrt((taille_x * taille_y) / (nombre_points*50+1))
+
+        for i in range(1, nombre_points+1):
+            x = random.uniform(lim_x, lim_x+taille_x)
+            y = random.uniform(lim_y, lim_y + taille_y)
+            pygame.draw.circle(screen, (0, 0, 0), (x, y), rayon_cercle)
 
 
 def obtention_coo(question: str) -> list[int]:

@@ -60,8 +60,8 @@ class djikstra:
                 elif (row, col) in self.list_wall:
                     pygame.draw.rect(self.screen, (255, 0, 0), rect)
                     self.dessine_points(screen, [row * x,col * y], self.list_wall[(row, col)], [x, y])
-                    pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))  # wall
-                    self.dessine_points(screen, [265, 715], self.count_wall, [65, 65])
+                    pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))  # wall
+                    self.dessine_points(self.screen, [265, 715], self.count_wall, [65, 65])
 
                 else:
                     pygame.draw.rect(self.screen, (255, 255, 255), rect)
@@ -130,24 +130,24 @@ class djikstra:
 
         #Start
         if coo_click_x < 100:
-            pygame.draw.rect(screen, (125, 125, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
-            pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
+            pygame.draw.rect(self.screen, (125, 125, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             return Mode.START
 
         #End
         elif coo_click_x > 100 and coo_click_x < 200:
-            pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 125), pygame.Rect(100, 700, 100, 100))  # End
-            pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 125), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             return Mode.END
 
         #Plus count wall
         elif coo_click_x > 200 and coo_click_x < 250:
-            pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
             #pygame.draw.rect(screen, (255, 125, 125), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             self.count_wall+=1
@@ -156,16 +156,16 @@ class djikstra:
 
         #Wall
         elif coo_click_x > 250 and coo_click_x < 350:
-            pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
-            pygame.draw.rect(screen, (255, 125, 125), pygame.Rect(250, 700, 100, 100))
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (255, 125, 125), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             return Mode.WALL
 
         # Moins count wall
         elif coo_click_x > 350 and coo_click_x < 400:
-            pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
             #pygame.draw.rect(screen, (255, 125, 125), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             if self.count_wall >1:
@@ -174,9 +174,9 @@ class djikstra:
 
         #rénitialisation
         elif coo_click_x > 500 and coo_click_x < 600:
-            pygame.draw.rect(screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
-            pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
-            pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(0, 700, 100, 100))  # Start
+            pygame.draw.rect(self.screen, (255, 255, 0), pygame.Rect(100, 700, 100, 100))  # End
+            pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(250, 700, 100, 100))
             #pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 700, 100, 100))
             return Mode.REFRESH
 
